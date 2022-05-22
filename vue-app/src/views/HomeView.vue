@@ -1,6 +1,7 @@
 <template>
   <div>
-    <span>{{ cart.length }}</span>
+    <h1>Cart Total Item: {{ cart.length }}</h1>
+    <hr>
     <div class="grid">
       <Product
         v-for="product in products"
@@ -9,6 +10,7 @@
         :image="product.image"
         :price="product.price"
         :id="product.id"
+        @cartclicked="addToCart"
       ></Product>
     </div>
   </div>
@@ -39,6 +41,12 @@ export default {
         console.log(e);
       });
   },
+  methods: {
+    addToCart (id) {
+      this.cart.push(id)
+
+    }
+  }
 };
 </script>
 
@@ -47,5 +55,14 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 20px;
+}
+
+hr {
+  width: 20%;
+  height: 5px;
+  background-color: black;
+  text-align: left;
+  display: inline-block;
+  margin: 20px 0px;
 }
 </style>

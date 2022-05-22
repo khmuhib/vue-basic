@@ -4,7 +4,7 @@
     <h3>{{ title }}</h3>
     <p>${{price}}</p>
     <slot></slot>
-    <button @click="cartHandlar">Add to Cart</button>
+    <button @click="handleAddToCart" class="addToCart">Add to Cart</button>
   </div>
 </template>
 
@@ -28,8 +28,9 @@ export default {
         }
     },
     methods: {
-        cartHandlar () {
-            console.log(this.id)
+        handleAddToCart () {
+            //console.log(this.id);
+            this.$emit("cartclicked", this.id);
         }
     },
 };
@@ -43,5 +44,16 @@ export default {
 
 .product {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.addToCart {
+  width: 80%;
+  background-color: aqua;
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  margin: auto;
+  display: block;
 }
 </style>
